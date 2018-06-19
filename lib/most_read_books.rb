@@ -1,5 +1,2 @@
-require "most_read_books/version"
-
-module MostReadBooks
-  # Your code goes here...
-end
+require_relative "./most_read_books/version"
+require_relative "./most_read_books/cli"

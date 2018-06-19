@@ -1,2 +1,3 @@
 #!/usr/bin/env ruby
-"hello world"
+require "./lib/most_read_books"
+MostReadBooks::CLI.new.call
