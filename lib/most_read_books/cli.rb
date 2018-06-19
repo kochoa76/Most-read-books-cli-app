@@ -9,6 +9,9 @@ class MostReadBooks::CLI
   def list_deals
     puts "Most Read Books This Week:"
     @books = MostReadBooks::Book.weeks_books
+    @books.each.with_index(1) do |book, i|
+      puts "#{i}. #{book.name} - #{book.author} - #{book.rating} rating - #{book.people_read} people reading this week"
+    end
   end
 
   def menu
@@ -16,12 +19,10 @@ class MostReadBooks::CLI
     while input != "exit"
     puts "Enter the number of the book you would like more info on, or type list to see the list of books again, or type exit"
     input = gets.strip.downcase
-    case input
-    when "1"
-      puts "info on book 1"
-    when "2"
-      puts "info on book 2"
-    when "list"
+
+    if input.to_i > 0
+    puts  @books[input.to_i - 1]
+    elsif input == "list"
       list_deals
     else
       puts "incorrect input, see prompt below"

@@ -2,11 +2,7 @@ class MostReadBooks::Book
  attr_accessor :name, :author, :rating, :people_read, :url
 
   def self.weeks_books
-    #should return instances of books
-  #   puts <<-DOC.gsub /^\s*/, ''
-  #   1. "The Great Alone" - by "Kristin Hannah" - 4.35 rating - read by: 3,407 people this week
-  #   2. "Little Fires Everywhere" - by "Celeste Ng" - 4.16/5 rating - read by: 2,694 people this week
-  # DOC
+    #scrape goodreads and then return books based on that data
 
   book_1 = self.new
   book_1.name = "The Great Alone"
