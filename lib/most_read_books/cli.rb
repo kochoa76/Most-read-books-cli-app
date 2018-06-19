@@ -15,15 +15,19 @@ class MostReadBooks::CLI
   end
 
   def menu
-    puts "Enter the number of the book you would like more info on or type exit"
     input =nil
     while input != "exit"
+    puts "Enter the number of the book you would like more info on, or type list to see the list of books again, or type exit"
     input = gets.strip.downcase
     case input
     when "1"
       puts "info on book 1"
     when "2"
       puts "info on book 2"
+    when "list"
+      list_deals
+    else
+      puts "incorrect input, see prompt below" 
     end
   end
 end
