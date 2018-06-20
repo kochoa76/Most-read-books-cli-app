@@ -11,15 +11,10 @@ class MostReadBooks::Book
     #find the product,
     #extract properties,
     #instantiate a book,
-
-    doc = Nokogiri::HTML(open("https://www.goodreads.com/book/most_read"))
+    file = "https://www.goodreads.com/book/most_read"
+    doc = Nokogiri::HTML(open(file))
     binding.pry
-    # book_1 = self.new
-  # book_1.name = "The Great Alone"
-  # book_1.author = "Kristin Hannah"
-  # book_1.rating = "4.35"
-  # book_1.people_read= "3,407"
-  # book_1.url = "https://www.goodreads.com/book/most_read"
+
 end
 
 
@@ -27,3 +22,10 @@ end
 
 
 end
+
+#   book_1 = self.new
+# book_1.name = "The Great Alone"
+# book_1.author = "Kristin Hannah"
+# book_1.rating = "4.35"
+# book_1.people_read= "3,407"
+# book_1.url = "https://www.goodreads.com/book/most_read"
