@@ -14,7 +14,7 @@ class MostReadBooks::Book
     #instantiate a book,
     file = "https://www.goodreads.com/book/most_read"
     doc = Nokogiri::HTML(open(file))
-
+    binding.pry
     main_page = doc.css("div.leftContainer")
 
     book = self.new
