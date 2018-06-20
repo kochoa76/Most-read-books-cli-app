@@ -10,7 +10,7 @@ class MostReadBooks::CLI
     puts "Most Read Books This Week:"
     @books = MostReadBooks::Book.weeks_books
     @books.each.with_index(1) do |book, i|
-      puts "#{i}. #{book.name} - #{book.author} - #{book.rating} rating - #{book.people_read} people reading this week"
+      puts "#{i}. #{book.name} - #{book.author} - #{book.rating} - #{book.people_read}"
     end
   end
 
