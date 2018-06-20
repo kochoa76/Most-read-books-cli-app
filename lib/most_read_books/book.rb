@@ -14,7 +14,10 @@ class MostReadBooks::Book
     file = "https://www.goodreads.com/book/most_read"
     doc = Nokogiri::HTML(open(file))
     binding.pry
-
+    title = doc.css("a.bookTitle")[0].text.gsub("\n", "").strip
+    author = doc.css("a.authorName")[0].text.gsub("\n", "").strip
+    rating = doc.css("span.minirating")[0].text.gsub(" — 71,776 ratings", "")
+    people_read = doc.css("span.greyText.statistic")[0].text.gsub(/\s+/, ' ')
 end
 
 
