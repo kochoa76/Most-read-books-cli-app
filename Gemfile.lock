@@ -8,6 +8,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.2)
+    gem-release (2.0.1)
     method_source (0.9.0)
     mini_portile2 (2.3.0)
     nokogiri (1.8.3)
@@ -22,6 +23,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.16)
+  gem-release
   most_read_books!
   pry
   rake (~> 10.0)

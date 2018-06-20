@@ -12,21 +12,18 @@ class MostReadBooks::Book
     #extract properties,
     #instantiate a book,
 
-    books = []
-
-
-
-
-
-  # book_1 = self.new
+    doc = Nokogiri::HTML(open("https://www.goodreads.com/book/most_read"))
+    binding.pry
+    # book_1 = self.new
   # book_1.name = "The Great Alone"
   # book_1.author = "Kristin Hannah"
   # book_1.rating = "4.35"
   # book_1.people_read= "3,407"
   # book_1.url = "https://www.goodreads.com/book/most_read"
+end
 
-    books
-  end
+
+
 
 
 end
