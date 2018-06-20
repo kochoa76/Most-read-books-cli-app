@@ -3,23 +3,30 @@ class MostReadBooks::Book
 
   def self.weeks_books
     #scrape goodreads and then return books based on that data
+    self.scrape_books
+  end
 
-  book_1 = self.new
-  book_1.name = "The Great Alone"
-  book_1.author = "Kristin Hannah"
-  book_1.rating = "4.35"
-  book_1.people_read= "3,407"
-  book_1.url = "https://www.goodreads.com/book/most_read"
+  def self.scrape_books
+    #go to goodreads,
+    #find the product,
+    #extract properties,
+    #instantiate a book,
 
-  book_2 = self.new
-  book_2.name = "Little Fires Everywhere"
-  book_2.author = "Celeste Ng"
-  book_2.rating = "4.16"
-  book_2.people_read= "2,694"
-  book_2.url = "https://www.goodreads.com/book/most_read"
+    books = []
 
-  [book_1 , book_2]
-end
+
+
+
+
+  # book_1 = self.new
+  # book_1.name = "The Great Alone"
+  # book_1.author = "Kristin Hannah"
+  # book_1.rating = "4.35"
+  # book_1.people_read= "3,407"
+  # book_1.url = "https://www.goodreads.com/book/most_read"
+
+    books
+  end
 
 
 end
