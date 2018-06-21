@@ -6,29 +6,33 @@ class MostReadBooks::Book
     self.scrape_books
   end
 
-  def self.scrape_books
-    books = []
+  def self.new_from_page
     #go to goodreads,
     #find the product,
     #extract properties,
     #instantiate a book,
-    file = "https://www.goodreads.com/book/most_read"
-    doc = Nokogiri::HTML(open(file))
-    main_page = doc.css("div.leftContainer")
+
+    books =[]
 
     book = self.new
-    book.name = doc.css("a.bookTitle")[0].text.gsub("\n", "").strip
-    book.author = doc.css("a.authorName")[0].text.gsub("\n", "").strip
-    book.rating = doc.css("span.minirating")[0].text.gsub(" — ", " with ")
-    book.people_read = doc.css("span.greyText.statistic")[0].text.gsub(/\s+/, ' ')
-    books<<book
-end
+    properties = BookScraper.new(url)
+    properties.each do |k, v|
+      book.send("#{k}=", v)
+    end
+    book
+  end
 
 
 
 
 
 end
+
+
+
+
+
+
 
 #   book_1 = self.new
 # book_1.name = "The Great Alone"
