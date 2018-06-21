@@ -3,7 +3,7 @@ class MostReadBooks::Book
 
   def self.weeks_books
     #scrape goodreads and then return books based on that data
-    self.scrape_books
+    self.new_from_page
   end
 
   def self.new_from_page

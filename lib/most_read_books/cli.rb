@@ -8,7 +8,7 @@ class MostReadBooks::CLI
 
   def list_deals
     puts "Most Read Books This Week:"
-    @books = MostReadBooks::Book.weeks_books
+    @books = MostReadBooks::BookScraper
     @books.each.with_index(1) do |book, i|
       puts "#{i}. #{book.name} - #{book.author} - #{book.rating} - #{book.people_read}"
     end

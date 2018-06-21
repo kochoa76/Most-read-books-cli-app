@@ -1,17 +1,24 @@
-class BookScraper
-  def initialize(url)
+class MostReadBooks::BookScraper
+  def self.scrape_main_page
+    main_url = "https://www.goodreads.com/book/most_read"
+    main_page = Nokogiri::HTML(open(main_url))
+    books = []
+    #main_page = main_page.css("table.tableList")
+    #main_page.css("tr")
+    #book_page = book.css("a.bookTitle").attribute("href")
+    #main_page.css("table.tableList").each do |table|
 
-    book = {}
-    url = "https://www.goodreads.com/book/most_read"
-    doc = Nokogiri::HTML(open(url))
-    main_page = doc.css("div.leftContainer")
+    main_page.css("table.tableList").each do |table|
+    table.css("tr").each do |book|
+    book_name = book.css("a.bookTitle span").children.text
+    book_author = book.css("a.authorName").text
+    book_rating = book.css("span.minirating").text.gsub(" — ", " with ")
+    book_people_read = book.css("span.greyText.statistic").text.gsub(/\s+/, ' ')
+    book_page = "#{book.attr('href')}"
 
-    book[:name] = doc.css("a.bookTitle")[0].text.gsub("\n", "").strip
-    book[:author] = doc.css("a.authorName")[0].text.gsub("\n", "").strip
-    book[:rating] = doc.css("span.minirating")[0].text.gsub(" — ", " with ")
-    book[:people_read] = doc.css("span.greyText.statistic")[0].text.gsub(/\s+/, ' ')
-
-    book
-
-  end 
+    books<< {name: book_name, author: book_author, rating: book_rating, people_read: book_people_read, page_url: book_page}
+      end
+    end
+    books
+  end
 end
