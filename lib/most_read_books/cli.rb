@@ -1,18 +1,25 @@
 class MostReadBooks::CLI
 
-
-
   def call
-    list_deals
+    make_books
+    list_books
     menu
     goodbye
   end
 
-  def list_deals
-    puts "Most Read Books This Week:"
-    @books = MostReadBooks::BookScraper
-    @books.each.with_index(1) do |book, i|
-      puts "#{i}. #{book.name} - #{book.author} - #{book.rating} - #{book.people_read}"
+  def make_books
+    @books_array = MostReadBooks::BookScraper.scrape_main_page
+    MostReadBooks::Book.create_from_collection(@books_array)
+  end
+
+  def list_books
+  puts "Most Read Books This Week:"
+    @books_array.each.with_index(1) do |book, i|
+      book_name = book[:name]
+      book_author = book[:author]
+      book_rating = book[:rating]
+      book_people_read = book[:people_read]
+      puts "#{i}. #{book_name} - #{book_author} - #{book_rating} - #{book_people_read}"
     end
   end
 
