@@ -1,5 +1,7 @@
 class MostReadBooks::CLI
 
+
+
   def call
     list_deals
     menu

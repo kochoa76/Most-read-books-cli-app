@@ -16,9 +16,16 @@ class MostReadBooks::BookScraper
     book_people_read = book.css("span.greyText.statistic").text.gsub(/\s+/, ' ')
     book_page = "#{book.attr('href')}"
 
-    books<< {name: book_name, author: book_author, rating: book_rating, people_read: book_people_read, page_url: book_page}
+    books<< {name: book_name, author: book_author, rating: book_rating, people_read: book_people_read, book_url: book_page}
       end
     end
     books
   end
+
+  def self.scrape_book_page
+    book_url = "https://www.goodreads.com/book/show/34912895-the-great-alone"
+    book_page = Nokogiri::HTML(open(book_url))
+    book_description = book_page.css("div#descriptionContainer").children.text 
+  end
+
 end
