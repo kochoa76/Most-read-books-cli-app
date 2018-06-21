@@ -14,13 +14,12 @@ class MostReadBooks::Book
     #instantiate a book,
     file = "https://www.goodreads.com/book/most_read"
     doc = Nokogiri::HTML(open(file))
-    binding.pry
     main_page = doc.css("div.leftContainer")
 
     book = self.new
     book.name = doc.css("a.bookTitle")[0].text.gsub("\n", "").strip
     book.author = doc.css("a.authorName")[0].text.gsub("\n", "").strip
-    book.rating = doc.css("span.minirating")[0].text.gsub(" — 71,776 ratings", "")
+    book.rating = doc.css("span.minirating")[0].text.gsub(" — ", " with ")
     book.people_read = doc.css("span.greyText.statistic")[0].text.gsub(/\s+/, ' ')
     books<<book
 end
