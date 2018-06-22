@@ -1,16 +1,15 @@
 class MostReadBooks::CLI
-BASE_PATH = "https://www.goodreads.com/book/"
+BASE_PATH = "https://www.goodreads.com"
 
   def call
     make_books
     list_books
-    add_description
     menu
     goodbye
   end
 
   def make_books #instantiates books from scrape method
-    @books_array = MostReadBooks::BookScraper.scrape_main_page(BASE_PATH + "most_read")
+    @books_array = MostReadBooks::BookScraper.scrape_main_page(BASE_PATH + "/book/most_read")
     MostReadBooks::Book.create_from_collection(@books_array)
   end
 
@@ -25,12 +24,29 @@ BASE_PATH = "https://www.goodreads.com/book/"
     end
   end
 
-  def add_description #scrapes book page and adds book description to appropriate book
-    MostReadBooks::Book.all.each do |book|
-      book.book_description = MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + book.book_url)
-      #book.MostReadBooks::BookScraper.add_book_description(description)
+    def choose_book(integer)
+       @urls_array = MostReadBooks::BookScraper.scrape_all_book_urls(BASE_PATH + "/book/most_read")
+     end
+
+    def add_description(link) #scrapes book page and adds book description to appropriate book
+        #@urls_array = MostReadBooks::BookScraper.scrape_all_book_urls(BASE_PATH + "/book/most_read")
+        book_description= MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + link)
+        # book.book_description = @book_description_array
+        #MostReadBooks::Book.add_book_description(book_description)
+        #book.MostReadBooks::BookScraper.add_book_description(description)
     end
-  end
+
+  # def add_description #scrapes book page and adds book description to appropriate book
+  #   MostReadBooks::Book.all.each do |book|
+  #     @book_description_array = MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + book.book_url)
+  #     # book.book_description = @book_description_array
+  #     book.add_book_description(@book_description_array)
+  #     #book.MostReadBooks::BookScraper.add_book_description(description)
+  #   end
+  # end
+
+      # MostReadBooks::BookScraper.scrape_book_page(book_url).each do |book|
+      #   book.add_book_description()
 
   def menu
     input =nil
@@ -38,11 +54,10 @@ BASE_PATH = "https://www.goodreads.com/book/"
     puts "Enter the number of the book you would like more info on, or type list to see the list of books again, or type exit"
     input = gets.strip.downcase
 
-    if input.to_i > 0
-      MostReadBooks:BookScraper.scrape_book_page(BASE_PATH + book.book_url)
-    #puts  @books_array[input.to_i - 1]
+    if input.to_i > 0 #when they call book number, print book number's synopsis but only that book's synopsis
+    add_description(@urls_array[input.to_i - 1])
     elsif input == "list"
-      list_deals
+      list_books 
     else
       puts "incorrect input, see prompt below"
     end

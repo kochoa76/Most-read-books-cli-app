@@ -16,17 +16,23 @@ class MostReadBooks::Book
     end
   end
 
-  def self.add_book_description(description)
-    self.all.each do |book|
-      book.book_description == description
-    end
-  end
+  # def self.add_book_description(description)
+  #   self.all.collect do |book|
+  #     book.book_description == description
+  #   end
+  # end
 
   def self.all
     @@all
   end
 
-end 
+  def pull_url
+    MostReadBooks::BookScraper.scrape_main_page
+    get book_url
+    add_description
+
+end
+end
 
   # def self.weeks_books
   #   #scrape goodreads and then return books based on that data
