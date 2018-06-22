@@ -16,41 +16,42 @@ class MostReadBooks::Book
     end
   end
 
-  def self.view_book_info(book_url)
-    self.scrape_book_page
-
+  def self.add_book_description(description)
+    self.all.each do |book|
+      book.book_description == description
+    end
   end
 
   def self.all
     @@all
   end
 
-  def self.weeks_books
-    #scrape goodreads and then return books based on that data
-    self.new_from_page
-  end
+end 
 
-  def self.new_from_page
-    #go to goodreads,
-    #find the product,
-    #extract properties,
-    #instantiate a book,
+  # def self.weeks_books
+  #   #scrape goodreads and then return books based on that data
+  #   self.new_from_page
+  # end
 
-    books =[]
+  # def self.new_from_page
+  #   #go to goodreads,
+  #   #find the product,
+  #   #extract properties,
+  #   #instantiate a book,
+  #
+  #   books =[]
+  #
+  #   book = self.new
+  #   properties = BookScraper.new(url)
+  #   properties.each do |k, v|
+  #     book.send("#{k}=", v)
+  #   end
+  #   book
+  # end
 
-    book = self.new
-    properties = BookScraper.new(url)
-    properties.each do |k, v|
-      book.send("#{k}=", v)
-    end
-    book
-  end
 
 
 
-
-
-end
 
 
 

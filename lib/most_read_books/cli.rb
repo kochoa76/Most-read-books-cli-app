@@ -4,16 +4,17 @@ BASE_PATH = "https://www.goodreads.com/book/"
   def call
     make_books
     list_books
+    add_description
     menu
     goodbye
   end
 
-  def make_books
+  def make_books #instantiates books from scrape method
     @books_array = MostReadBooks::BookScraper.scrape_main_page(BASE_PATH + "most_read")
     MostReadBooks::Book.create_from_collection(@books_array)
   end
 
-  def list_books
+  def list_books #puts a hash of all books with properties
   puts "Most Read Books This Week:"
     @books_array.each.with_index(1) do |book, i|
       book_name = book[:name]
@@ -24,9 +25,12 @@ BASE_PATH = "https://www.goodreads.com/book/"
     end
   end
 
-  def choose_book
-    MostReadBooks::BookScraper.view_book_info(book_url)
-
+  def add_description #scrapes book page and adds book description to appropriate book
+    MostReadBooks::Book.all.each do |book|
+      book.book_description = MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + book.book_url)
+      #book.MostReadBooks::BookScraper.add_book_description(description)
+    end
+  end
 
   def menu
     input =nil

@@ -26,12 +26,7 @@ class MostReadBooks::BookScraper
     #book_url = "https://www.goodreads.com/book/show/34912895-the-great-alone"
     book_page = Nokogiri::HTML(open(book_url))
     book_description = book_page.css("div#descriptionContainer").children.text
-  end
-
-  def self.scrape_book_url
-    book_url = "https://www.goodreads.com/book/show/34912895-the-great-alone"
-    book_page = Nokogiri::HTML(open(book_url))
-    binding.pry
+    
   end
 
 
