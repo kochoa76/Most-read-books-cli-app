@@ -1,6 +1,6 @@
 class MostReadBooks::BookScraper
-  def self.scrape_main_page
-    main_url = "https://www.goodreads.com/book/most_read"
+  def self.scrape_main_page(main_url)
+    #main_url = "https://www.goodreads.com/book/most_read"
     main_page = Nokogiri::HTML(open(main_url))
     books = []
     #main_page = main_page.css("table.tableList")
@@ -22,10 +22,20 @@ class MostReadBooks::BookScraper
     books
   end
 
-  def self.scrape_book_page
+  def self.scrape_book_page(book_url)
+    #book_url = "https://www.goodreads.com/book/show/34912895-the-great-alone"
+    book_page = Nokogiri::HTML(open(book_url))
+    book_description = book_page.css("div#descriptionContainer").children.text
+  end
+
+  def self.scrape_book_url
     book_url = "https://www.goodreads.com/book/show/34912895-the-great-alone"
     book_page = Nokogiri::HTML(open(book_url))
-    book_description = book_page.css("div#descriptionContainer").children.text 
+    binding.pry
   end
+
+
+
+
 
 end

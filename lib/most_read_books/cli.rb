@@ -1,4 +1,5 @@
 class MostReadBooks::CLI
+BASE_PATH = "https://www.goodreads.com/book/"
 
   def call
     make_books
@@ -8,7 +9,7 @@ class MostReadBooks::CLI
   end
 
   def make_books
-    @books_array = MostReadBooks::BookScraper.scrape_main_page
+    @books_array = MostReadBooks::BookScraper.scrape_main_page(BASE_PATH + "most_read")
     MostReadBooks::Book.create_from_collection(@books_array)
   end
 
@@ -23,6 +24,10 @@ class MostReadBooks::CLI
     end
   end
 
+  def choose_book
+    MostReadBooks::BookScraper.view_book_info(book_url)
+
+
   def menu
     input =nil
     while input != "exit"
@@ -30,7 +35,8 @@ class MostReadBooks::CLI
     input = gets.strip.downcase
 
     if input.to_i > 0
-    puts  @books[input.to_i - 1]
+      MostReadBooks:BookScraper.scrape_book_page(BASE_PATH + book.book_url)
+    #puts  @books_array[input.to_i - 1]
     elsif input == "list"
       list_deals
     else
