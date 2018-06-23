@@ -38,6 +38,9 @@ BASE_PATH = "https://www.goodreads.com"
     input = gets.strip.downcase
 
     if input.to_i > 0 #when they call book number, print book number's synopsis but only that book's synopsis
+      puts @books_array[input.to_i-1][:name]
+      puts ""
+      puts "Book Description:"
       puts choose_book(input)
 
     elsif input == "list"
