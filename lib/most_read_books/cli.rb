@@ -1,4 +1,5 @@
 class MostReadBooks::CLI
+
 BASE_PATH = "https://www.goodreads.com"
 
   def call
@@ -24,17 +25,24 @@ BASE_PATH = "https://www.goodreads.com"
     end
   end
 
-    def choose_book(integer)
+    def choose_book(index)
        @urls_array = MostReadBooks::BookScraper.scrape_all_book_urls(BASE_PATH + "/book/most_read")
+       book_description= MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + @urls_array[index] )
      end
 
-    def add_description(link) #scrapes book page and adds book description to appropriate book
-        #@urls_array = MostReadBooks::BookScraper.scrape_all_book_urls(BASE_PATH + "/book/most_read")
-        book_description= MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + link)
-        # book.book_description = @book_description_array
-        #MostReadBooks::Book.add_book_description(book_description)
-        #book.MostReadBooks::BookScraper.add_book_description(description)
-    end
+     def input_to_index(user_input)
+       user_input.to_i - 1
+     end
+
+    # def add_description(index) #scrapes book page and adds book description to appropriate book
+    #     #@urls_array = MostReadBooks::BookScraper.scrape_all_book_urls(BASE_PATH + "/book/most_read")
+    #
+    #     book_description= MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + @urls_array[index] )
+    #     binding.pry
+    #     # book.book_description = @book_description_array
+    #     #MostReadBooks::Book.add_book_description(book_description)
+    #     #book.MostReadBooks::BookScraper.add_book_description(description)
+    # end
 
   # def add_description #scrapes book page and adds book description to appropriate book
   #   MostReadBooks::Book.all.each do |book|
@@ -54,10 +62,12 @@ BASE_PATH = "https://www.goodreads.com"
     puts "Enter the number of the book you would like more info on, or type list to see the list of books again, or type exit"
     input = gets.strip.downcase
 
+
     if input.to_i > 0 #when they call book number, print book number's synopsis but only that book's synopsis
-    add_description(@urls_array[input.to_i - 1])
+    choose_book(input.to_i-1)
+
     elsif input == "list"
-      list_books 
+      list_books
     else
       puts "incorrect input, see prompt below"
     end
