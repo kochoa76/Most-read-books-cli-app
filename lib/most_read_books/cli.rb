@@ -1,6 +1,6 @@
 class MostReadBooks::CLI
 
-BASE_PATH = "https://www.goodreads.com"
+  BASE_PATH = "https://www.goodreads.com"
 
   def call
     make_books
@@ -33,8 +33,7 @@ BASE_PATH = "https://www.goodreads.com"
   def menu
     input = ""
     while input != "exit"
-      puts "Enter the number of the book to read the book's description, or type list to see the list of books again, or type exit"
-
+    puts "Enter the number of the book to read the book's description, or type list to see the list of books again, or type exit"
     input = gets.strip.downcase
 
     if input.to_i > 0 #when they call book number, print book number's synopsis but only that book's synopsis
@@ -45,6 +44,7 @@ BASE_PATH = "https://www.goodreads.com"
 
     elsif input == "list"
       list_books
+
     else
       puts "incorrect input, see prompt below" unless input == "exit"
     end
@@ -54,5 +54,4 @@ end
   def goodbye
     puts "See you next week for more books!"
   end
-
 end

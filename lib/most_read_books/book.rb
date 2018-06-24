@@ -1,9 +1,9 @@
 class MostReadBooks::Book
- attr_accessor :name, :author, :rating, :people_read, :book_url, :book_description
+  attr_accessor :name, :author, :rating, :people_read, :book_url, :book_description
 
- @@all = []
+  @@all = []
 
- def initialize(book_hash)
+  def initialize(book_hash)
    book_hash.each do |accessor, value|
       self.send("#{accessor}=", value)
       @@all<<self
@@ -16,58 +16,7 @@ class MostReadBooks::Book
     end
   end
 
-  # def self.add_book_description(description)
-  #   self.all.collect do |book|
-  #     book.book_description == description
-  #   end
-  # end
-
   def self.all
     @@all
   end
-
-  def pull_url
-    MostReadBooks::BookScraper.scrape_main_page
-    get book_url
-    add_description
-
 end
-end
-
-  # def self.weeks_books
-  #   #scrape goodreads and then return books based on that data
-  #   self.new_from_page
-  # end
-
-  # def self.new_from_page
-  #   #go to goodreads,
-  #   #find the product,
-  #   #extract properties,
-  #   #instantiate a book,
-  #
-  #   books =[]
-  #
-  #   book = self.new
-  #   properties = BookScraper.new(url)
-  #   properties.each do |k, v|
-  #     book.send("#{k}=", v)
-  #   end
-  #   book
-  # end
-
-
-
-
-
-
-
-
-
-
-
-#   book_1 = self.new
-# book_1.name = "The Great Alone"
-# book_1.author = "Kristin Hannah"
-# book_1.rating = "4.35"
-# book_1.people_read= "3,407"
-# book_1.url = "https://www.goodreads.com/book/most_read"
