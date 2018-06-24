@@ -15,7 +15,9 @@ class MostReadBooks::CLI
   end
 
   def list_books #puts a hash of all books with properties
-  puts "Most Read Books This Week:"
+  puts ""
+  puts "Welcome to this week's top 50 most read books! Scroll down to read the full list, and select an option"
+  puts ""
     @books_array.each.with_index(1) do |book, i|
       book_name = book[:name]
       book_author = book[:author]
