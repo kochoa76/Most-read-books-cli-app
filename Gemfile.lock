@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    most-read-books (0.1.0)
+    most_read_books (0.1.0)
       nokogiri
 
 GEM
@@ -24,7 +24,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.16)
   gem-release
-  most-read-books!
+  most_read_books!
   pry
   rake (~> 10.0)
 

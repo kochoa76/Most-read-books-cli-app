@@ -36,7 +36,7 @@ class MostReadBooks::CLI
     input = ""
     while input != "exit"
     puts ""
-    puts "  Options:  * Enter a book's respective number to read it's synopsis
+    puts "  Options:  * Enter a book's respective number to read its synopsis
             * Type list to see the list of books again
             * Type exit"
     input = gets.strip.downcase
