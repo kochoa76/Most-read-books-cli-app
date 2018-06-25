@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["'ochoa.kayla@yahoo.com'"]
 
   spec.summary       = %q{CLI for displaying the top 50 most read books this week as well as their ratings, and book synopsis}
-  spec.description   = %q{Scrapes Goodreads (https://www.goodreads.com/book/most_read), a social cataloging website that allows individuals to search for books, annotations, and reviews. }
+  spec.description   = %q{CLI that displays this week's top 50 most read books. Scrapes Goodreads to view (https://www.goodreads.com/book/most_read), a social cataloging website that allows individuals to search for books, annotations, and reviews. }
   spec.homepage      = "https://github.com/kochoa76/Most-read-books-cli-app"
   spec.license       = "MIT"
 
