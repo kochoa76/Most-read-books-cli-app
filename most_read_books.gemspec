@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["'Kayla Ochoa'"]
   spec.email         = ["'ochoa.kayla@yahoo.com'"]
 
-  spec.summary       = %q{Most read books this week}
-  spec.description   = %q{Most read books based on popularity this week}
+  spec.summary       = %q{CLI for displaying the top 50 most read books this week as well as their ratings, and book synopsis}
+  spec.description   = %q{Scrapes Goodreads (https://www.goodreads.com/book/most_read), a social cataloging website that allows individuals to search for books, annotations, and reviews. }
   spec.homepage      = "https://github.com/kochoa76/Most-read-books-cli-app"
   spec.license       = "MIT"
 
