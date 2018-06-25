@@ -58,6 +58,8 @@ class MostReadBooks::CLI
 end
 
   def goodbye
+    puts ""
     puts "See you next week for more books!"
+    puts ""
   end
 end
