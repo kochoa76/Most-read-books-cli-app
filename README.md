@@ -7,7 +7,7 @@ This Ruby Gem provides a CLI for displaying the top 50 most read books this week
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'most-read-books'
+gem 'most_read_books'
 ```
 
 And then execute:
@@ -16,11 +16,13 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install most-read-books
+    $ gem install most_read_books
 
 ## Usage
 
-TODO: Write usage instructions here
+Type the below and follow the on-screen prompts
+
+$ most-read-books 
 
 ## Development
 
