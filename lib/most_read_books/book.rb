@@ -12,7 +12,7 @@ class MostReadBooks::Book
   def self.list_all_books
     main_page = Nokogiri::HTML(open(BASE_PATH + "/book/most_read"))
 
-    @books_array =[]
+    @books_array = []
     main_page.css("table.tableList").each do |table|
     table.css("tr").each do |s|
     book = self.new
