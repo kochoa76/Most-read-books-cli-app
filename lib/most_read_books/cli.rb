@@ -1,7 +1,5 @@
 class MostReadBooks::CLI
-
-  BASE_PATH = "https://www.goodreads.com"
-
+BASE_PATH = "https://www.goodreads.com/book/most_read"
   def call
     list_books
     menu
