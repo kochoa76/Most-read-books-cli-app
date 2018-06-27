@@ -3,4 +3,5 @@
 require "bundler/setup"
 require "most_read_books"
 
+
 MostReadBooks::CLI.new.call

@@ -9,10 +9,10 @@ class MostReadBooks::CLI
     goodbye
   end
 
-  def make_books #instantiates books from scrape method
-    @books_array = MostReadBooks::BookScraper.scrape_main_page(BASE_PATH + "/book/most_read")
-    MostReadBooks::Book.create_from_collection(@books_array)
-  end
+  # def make_books #instantiates books from scrape method
+  #   @books_array = MostReadBooks::BookScraper.scrape_main_page(BASE_PATH + "/book/most_read")
+  #   MostReadBooks::Book.create_from_collection(@books_array)
+  # end
 
   def list_books #puts a hash of all books with properties
   puts ""
@@ -29,7 +29,9 @@ class MostReadBooks::CLI
 
   def choose_book(input) #selects one book from list, scrapes it and puts out it's description
    @urls_array = MostReadBooks::BookScraper.scrape_all_book_urls(BASE_PATH + "/book/most_read")
-    book_description= MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + @urls_array[input.to_i-1] )
+    book_description= @books_array[input.to_i-1][:book_url]
+
+    #MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + @urls_array[input.to_i-1] )
   end
 
   def menu
