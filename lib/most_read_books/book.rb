@@ -13,7 +13,7 @@ class MostReadBooks::Book
   #   end
   # end
 
-  def initialize(name, author, rating, people_read, url)
+  def initialize
     @name = name
     @author= author
     @rating= rating
@@ -37,7 +37,7 @@ class MostReadBooks::Book
   end
 
   def self.all
-    @@all<<@new_books.uniq 
+    @@all<<@new_books.uniq
   end
 
   def description
