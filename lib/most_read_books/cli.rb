@@ -26,7 +26,6 @@ class MostReadBooks::CLI
 
     if input.to_i > 0 #when they call book number, print book number's synopsis but only that book's synopsis
 
-      # puts MostReadBooks::Book.all.name
       puts MostReadBooks::Book.find_name(input)
       puts ""
       puts "Book Synopsis:"

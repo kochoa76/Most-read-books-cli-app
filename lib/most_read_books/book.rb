@@ -2,14 +2,12 @@ class MostReadBooks::Book
   attr_accessor :name, :author, :rating, :people_read, :url, :description
   BASE_PATH = "https://www.goodreads.com"
 
-
   def initialize(name = nil, author =nil, rating = nil, people_read =nil)
       @name = name
       @author = author
       @rating = rating
       @people_read = people_read
   end
-
 
   def self.list_all_books
     main_page = Nokogiri::HTML(open(BASE_PATH + "/book/most_read"))
