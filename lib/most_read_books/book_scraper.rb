@@ -5,12 +5,12 @@ class MostReadBooks::BookScraper
 
 
     books_array =[]
-    # book = MostReadBooks::Book.new
-    # book.name = main_page.css("table.tableList").css("tr").css("a.bookTitle span").children.text
-    # book.author =main_page.css("table.tableList").css("tr").css("a.authorName").text
-    # book.rating = main_page.css("table.tableList").css("tr").css("span.minirating").text.gsub(" — ", " with ")
-    # book.people_read = main_page.css("table.tableList").css("tr").css("span.greyText.statistic").text.gsub(/\s+/, ' ')
-    # book.url = main_page.css("tr a.bookTitle").attr("href")
+    book = MostReadBooks::Book.new
+    book.name = main_page.css("table.tableList").css("tr").css("a.bookTitle span").children.text
+    book.author =main_page.css("table.tableList").css("tr").css("a.authorName").text
+    book.rating = main_page.css("table.tableList").css("tr").css("span.minirating").text.gsub(" — ", " with ")
+    book.people_read = main_page.css("table.tableList").css("tr").css("span.greyText.statistic").text.gsub(/\s+/, ' ')
+    book.url = main_page.css("tr a.bookTitle").attr("href")
 
 
     main_page.css("table.tableList").each do |table|
@@ -23,11 +23,28 @@ class MostReadBooks::BookScraper
     book.url = main_page.css("tr a.bookTitle").attr("href").value
 
     books_array << book
+
+
   end
 end
 
 books_array
 end
+
+# main_page.css("table.tableList").each do |table|
+#    table.css("tr").each do |book|
+#    book_name = book.css("a.bookTitle span").children.text
+#    book_author = book.css("a.authorName").text
+#    book_rating = book.css("span.minirating").text.gsub(" — ", " with ")
+#    book_people_read = book.css("span.greyText.statistic").text.gsub(/\s+/, ' ')
+#    book_page = "#{book.attr('href')}"
+#
+#    books_array<< {name: book_name, author: book_author, rating: book_rating, people_read: book_people_read, book_url: book_page}
+#      end
+#    end
+#    books_array
+#  end
+
 
   def self.scrape_all_book_urls(url)
 
