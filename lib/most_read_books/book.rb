@@ -26,6 +26,7 @@ class MostReadBooks::Book
     @rating= rating
     @people_read= people_read
     @url = url
+    @@all<<self
   end
 #
 #   def self.create_books
@@ -46,10 +47,15 @@ class MostReadBooks::Book
   #   @new_books =[]
   #   @new_books<<self.new(@books_array[input.to_i-1][:name], @books_array[input.to_i-1][:author], @books_array[input.to_i-1][:rating], @books_array[input.to_i-1][:people_read], @books_array[input.to_i-1][:url])
   # end
+
 end
 
+  def save
+    @@all<<self.list_all_books
+  end
+
   def self.all
-    @@all<<self.list_all_books.uniq 
+    @@all
   end
 
   def self.choose_book(input)
