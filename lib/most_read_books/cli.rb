@@ -1,5 +1,5 @@
 class MostReadBooks::CLI
-BASE_PATH = "https://www.goodreads.com/book/most_read"
+
   def call
     list_books
     menu
@@ -12,8 +12,8 @@ BASE_PATH = "https://www.goodreads.com/book/most_read"
     puts ""
     MostReadBooks::Book.all.each.with_index(1) do |book, i|
     puts "#{i}. #{book.name} by #{book.author} - #{book.rating} - this week#{book.people_read}"
+    end
   end
-end
 
   def menu
     input = ""
@@ -37,9 +37,9 @@ end
       list_books
     else
       puts "incorrect input, see prompt below" unless input == "exit"
+      end
     end
   end
-end
 
   def goodbye
     puts ""
