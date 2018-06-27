@@ -24,7 +24,7 @@ class MostReadBooks::BookScraper
   # [book_name, book_author, book_rating, book_people_read, book_url]
     end
   end
-  books_array 
+  books_array
 end
 
   # def self.scrape_all_book_urls(url)

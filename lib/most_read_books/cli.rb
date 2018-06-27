@@ -3,7 +3,6 @@ class MostReadBooks::CLI
   BASE_PATH = "https://www.goodreads.com"
 
   def call
-    make_books
     list_books
     menu
     goodbye
@@ -18,14 +17,20 @@ class MostReadBooks::CLI
   puts ""
   puts "Welcome to this week's top 50 most read books! Scroll down to read the full list of books and their weekly ratings, and select an option below."
   puts ""
-    @books_array.each.with_index(1) do |book, i|
-      book_name = book[:name]
-      book_author = book[:author]
-      book_rating = book[:rating]
-      book_people_read = book[:people_read]
-      puts "#{i}. #{book_name} by #{book_author} - #{book_rating} - this week#{book_people_read}"
-    end
+
+  MostReadBooks::Book.all.each do |book, i|
+    puts "#{i}. #{book.name} by #{book.author} - #{book.rating} - this week#{book.people_read}"
   end
+end
+
+  #   @books_array.each.with_index(1) do |book, i|
+  #     book_name = book[:name]
+  #     book_author = book[:author]
+  #     book_rating = book[:rating]
+  #     book_people_read = book[:people_read]
+  #     puts "#{i}. #{book_name} by #{book_author} - #{book_rating} - this week#{book_people_read}"
+  #   end
+  # end
 
   def choose_book(input) #selects one book from list, scrapes it and puts out it's description
    @urls_array = MostReadBooks::BookScraper.scrape_all_book_urls(BASE_PATH + "/book/most_read")
