@@ -20,31 +20,29 @@ class MostReadBooks::BookScraper
     book.author = s.css("a.authorName").text
     book.rating = s.css("span.minirating").text.gsub(" — ", " with ")
     book.people_read = s.css("span.greyText.statistic").text.gsub(/\s+/, ' ')
-    book.url = main_page.css("tr a.bookTitle").attr("href")
+    book.url = main_page.css("tr a.bookTitle").attr("href").value
 
-    books_array << book 
+    books_array << book
   end
 end
-
-    # books_array<< {name: book.name, author: book.author, rating: book.rating, people_read: book.people_read, url: book.url}
-  # [book_name, book_author, book_rating, book_people_read, book_url]
-
 
 books_array
 end
 
-  # def self.scrape_all_book_urls(url)
-  #   urls_array = []
-  #
-  #   main_page = Nokogiri::HTML(open(url))
-  #   main_page.css("tr a.bookTitle").find_all do |url|
-  #     urls_array<< url.attr("href")
-  #   end
-  #   urls_array
-  # end
+  def self.scrape_all_book_urls(url)
+
+    urls_array = []
+
+    main_page = Nokogiri::HTML(open(url))
+    main_page.css("tr a.bookTitle").find_all do |url|
+      urls_array<< url.attr("href")
+    end
+    urls_array
+  end
 
   def self.scrape_book_page(book_url)
     book_page = Nokogiri::HTML(open(book_url))
-    book_description = book_page.css("div#description span")[1].text.strip
+    book = MostReadBooks::Book.new
+    book.description = book_page.css("div#description span")[1].text.strip
   end
 end

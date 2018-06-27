@@ -18,7 +18,7 @@ class MostReadBooks::CLI
   puts "Welcome to this week's top 50 most read books! Scroll down to read the full list of books and their weekly ratings, and select an option below."
   puts ""
 
-  MostReadBooks::Book.all.each do |book, i|
+  MostReadBooks::Book.list_all_books.each.with_index(1) do |book, i|
     puts "#{i}. #{book.name} by #{book.author} - #{book.rating} - this week#{book.people_read}"
   end
 end
@@ -32,12 +32,16 @@ end
   #   end
   # end
 
-  def choose_book(input) #selects one book from list, scrapes it and puts out it's description
-   @urls_array = MostReadBooks::BookScraper.scrape_all_book_urls(BASE_PATH + "/book/most_read")
-    book_description= @books_array[input.to_i-1][:book_url]
-
-    #MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + @urls_array[input.to_i-1] )
-  end
+  # def choose_book(input) #selects one book from list, scrapes it and puts out it's description
+  #   book_description = MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + book.url)
+  # end
+  #
+  #
+  #  @urls_array = MostReadBooks::BookScraper.scrape_all_book_urls(BASE_PATH + "/book/most_read")
+  #   book_description= @books_array[input.to_i-1][:book_url]
+  #
+  #   #MostReadBooks::BookScraper.scrape_book_page(BASE_PATH + @urls_array[input.to_i-1] )
+  # end
 
   def menu
     input = ""
@@ -50,11 +54,11 @@ end
 
     if input.to_i > 0 #when they call book number, print book number's synopsis but only that book's synopsis
 
-      puts @books_array[input.to_i-1][:name]
+      # puts MostReadBooks::Book.all.name
       puts ""
       puts "Book Synopsis:"
       puts ""
-      puts choose_book(input)
+      puts MostReadBooks::Book.choose_book(input)
 
     elsif input == "list"
       list_books
