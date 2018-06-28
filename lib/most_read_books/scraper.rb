@@ -18,6 +18,8 @@ BASE_PATH = "https://www.goodreads.com"
    MostReadBooks::Book.create_from_collection(book_hashes)
   end
 
-
-
+  def self.scrape_book_url(book_url)
+    book_page = Nokogiri::HTML(open(book_url))
+    book_description = book_page.css("div#description span")[1].text.strip
+  end
 end
