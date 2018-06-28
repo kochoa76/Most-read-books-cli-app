@@ -2,42 +2,51 @@ class MostReadBooks::Book
   attr_accessor :name, :author, :rating, :people_read, :url, :description
   BASE_PATH = "https://www.goodreads.com"
 
-  def initialize(name = nil, author =nil, rating = nil, people_read =nil)
+  def initialize(name: nil, author: nil, rating: nil, people_read: nil, url: nil, description: nil)
       @name = name
       @author = author
       @rating = rating
       @people_read = people_read
+      @url = url
+      @description = description
   end
 
   def self.list_all_books
-    main_page = Nokogiri::HTML(open(BASE_PATH + "/book/most_read"))
-
-    @books_array = []
-    main_page.css("table.tableList").each do |table|
-    table.css("tr").each do |s|
-    book = self.new
-    book.name = s.css("a.bookTitle span").children.text
-    book.author = s.css("a.authorName").text
-    book.rating = s.css("span.minirating").text.gsub(" — ", " with ")
-    book.people_read = s.css("span.greyText.statistic").text.gsub(/\s+/, ' ')
-    book.url = s.css("a.bookTitle").attr("href").value
-
-    @books_array << book
-    end
+    MostReadBooks::Scraper.scrape_book_list
+  #   main_page = Nokogiri::HTML(open(BASE_PATH + "/book/most_read"))
+  #
+  #   @books_array = []
+  #   main_page.css("table.tableList").each do |table|
+  #   table.css("tr").each do |s|
+  #   book = self.new
+  #   book.name = s.css("a.bookTitle span").children.text
+  #   book.author = s.css("a.authorName").text
+  #   book.rating = s.css("span.minirating").text.gsub(" — ", " with ")
+  #   book.people_read = s.css("span.greyText.statistic").text.gsub(/\s+/, ' ')
+  #   book.url = s.css("a.bookTitle").attr("href").value
+  #
+  #   @books_array << book
+  #   end
+  # end
+  #   @books_array
   end
-    @books_array
+
+  def self.create_from_collection(books_array)
+    books_array.collect do |book_hash|
+     self.new(book_hash)
+    end
   end
 
   def self.find_name(input)
-    @books_array[input.to_i-1].name
+    all[input.to_i-1].name
   end
 
   def self.all
-    @@all ||= list_all_books
+    @@all ||= MostReadBooks::Scraper.scrape_book_list
   end
 
   def self.choose_book(input)
-    @book_description = self.scrape_book_page(BASE_PATH + self.all[input.to_i-1].url)
+    @book_description = self.scrape_book_page(BASE_PATH + all[input.to_i-1].url)
   end
 
   def self.scrape_book_page(book_url)
